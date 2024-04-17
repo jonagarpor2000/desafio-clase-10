@@ -2,36 +2,45 @@ import express from 'express';
 import handlebars from 'express-handlebars';
 import { Server } from 'socket.io';
 import __dirname from './utils.js';
-import ProductManager from './class/ProductManager.js'
-import {http}
+import viewsRouter from './routers/viewsRouter.js'
 
-
-const prodmg = new ProductManager('./src/models/products.json')
 
 const app = express()
-const httpServer = app.listen(8080, () => console.log('Srv Up!'))
-//const io = new Server(httpServer)
+const PORT = process.env.PORT || 8080
+const httpServer = app.listen(PORT, error => {
+    if(error) console.log(error)
+    console.log('Server escuchando en el puerto 8080')
+})
+const io = new Server(httpServer)
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true}));
+function productsSocket (io){
+    return (req, res,next) => {
+        req.io = io
+        next()
+    }
+}
+
 
 app.engine('handlebars', handlebars.engine())
 app.set('view engine', 'handlebars')
-app.set('views', path.resolve(__dirname+'/views'))
-app.use(express.static(path.resolve(__dirname+'/public')))
+app.set('views',__dirname+'/views')
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.static(__dirname+'/public'))
+app.use(productsSocket(io))
 
-app.use('/', async(req,res)=> res.render('./partials/home'),{products: await prodmg.getProducts()})
+app.use('/', viewsRouter)
 
 
+function loadprods (io){
+    let products = []
+    io.on('connection', socket => {
+        console.log(`Cliente Conectado`)
+        socket.broadcast.emit('productsended')
+        products.push(data)
+        io.emit('productsended', products)
+    })  
 
-//const messages = []
+}
 
-/*io.on('connection', socket => {
-    socket.broadcast.emit('alerta')
-    socket.emit('logs', messages)
-    socket.on('message', data => {
-        messages.push(data)
-        io.emit('logs', messages)
-    })
-})*/
-
+loadprods(io)

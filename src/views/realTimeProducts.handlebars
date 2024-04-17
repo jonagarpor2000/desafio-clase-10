@@ -1,3 +1,23 @@
- <p>¿Como estan?</p>
 
+<realTimeProducts>
+<h1>Product Manager</h1>
+
+<ul id="products-list"></ul>
+
+<button id="add-product-btn">Agregar producto</button>
+
+<div id="add-product-form" style="display: none;">
+    <form id="add-product-form-data">
+         <input type="text" id="product-code" placeholder="Codigo del producto" name="code">
+        <input type="text" id="product-title" placeholder="Nombre del producto" name="title">
+        <input type="text" id="product-description" placeholder="Descripción del producto" name="Description">
+        <input type="number" id="product-price" placeholder="Precio del producto" name="price">
+        <input type="number" id="product-stock" placeholder="Stock del producto" name="stock">
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+
+
+<script src="/socket.io.js"></script>
  <script src="/js/index.js"></script>
+ </realTimeProducts>
