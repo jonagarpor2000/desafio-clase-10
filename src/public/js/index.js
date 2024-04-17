@@ -22,6 +22,24 @@ const product = {
 let productslist = document.querySelector('#products-list')
 
 
+/*try {
+  const response = await fetch("/productsend", {
+    method: "POST",
+    // Set the FormData instance as the request body
+    body: add-product-form-data,
+  });
+  console.log(`Soy: ${await response.json()}`);
+} catch (e) {
+  console.error(e);
+}*/
+
+/*productslist.m('keyup', evt => {
+  if(evt.key === 'Enter'){
+      socket.emit('mensaje_cliente', input.value)
+      input.value= ''
+  }
+})*/
+
 socket.on('productsended',data =>{
   let product = ''
   data.forEach(element => {

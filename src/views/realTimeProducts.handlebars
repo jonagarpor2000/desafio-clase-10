@@ -2,12 +2,11 @@
 <realTimeProducts>
 <h1>Product Manager</h1>
 
-<ul id="products-list"></ul>
 
 <button id="add-product-btn">Agregar producto</button>
 
-<div id="add-product-form" style="display: none;">
-    <form id="add-product-form-data">
+<div id="add-product-form">
+    <form id="add-product-form-data" action="/realtimeproducts" method="post">
          <input type="text" id="product-code" placeholder="Codigo del producto" name="code">
         <input type="text" id="product-title" placeholder="Nombre del producto" name="title">
         <input type="text" id="product-description" placeholder="Descripción del producto" name="Description">
@@ -17,7 +16,6 @@
     </form>
 </div>
 
-
-<script src="/socket.io.js"></script>
- <script src="/js/index.js"></script>
+<ul id="products-list">Lista de productos</ul>
+ 
  </realTimeProducts>

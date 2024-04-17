@@ -32,15 +32,3 @@ app.use(productsSocket(io))
 app.use('/', viewsRouter)
 
 
-function loadprods (io){
-    let products = []
-    io.on('connection', socket => {
-        console.log(`Cliente Conectado`)
-        socket.broadcast.emit('productsended')
-        products.push(data)
-        io.emit('productsended', products)
-    })  
-
-}
-
-loadprods(io)
