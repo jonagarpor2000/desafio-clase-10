@@ -28,7 +28,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(__dirname+'/public'))
 app.use(productsSocket(io))
-
-app.use('/', viewsRouter)
+app.use('/', viewsRouter,productsSocket(io))
 
 

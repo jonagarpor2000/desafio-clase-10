@@ -10,47 +10,21 @@ const socket = io()
   return ultimaposicion;
 }
 
-const product = {
-  id: this.getNextId(),
-  title, 
-  description, 
-  price,
-  status: true, 
-  code,
-  stock,
-}
 let productslist = document.querySelector('#products-list')
 
 
-/*try {
-  const response = await fetch("/productsend", {
-    method: "POST",
-    // Set the FormData instance as the request body
-    body: add-product-form-data,
+socket.on('srv:productsended',data =>{
+  document.querySelector('#products-list').value = 'Lista de Productos'
+  let htmlproduct = ''
+  console.log(`Mis datos son: ${data}`)
+  data.forEach(product => {
+      htmlproduct += `<li> Nombre: ${product.title}
+      <br>Descripcion: ${product.description}
+      <br>Precio: ${product.price}
+      <br>Status: ${product.status}
+      <br>Codigo: ${product.code}
+      <br>Stock: ${product.stock} <li><br>`
   });
-  console.log(`Soy: ${await response.json()}`);
-} catch (e) {
-  console.error(e);
-}*/
-
-/*productslist.m('keyup', evt => {
-  if(evt.key === 'Enter'){
-      socket.emit('mensaje_cliente', input.value)
-      input.value= ''
-  }
-})*/
-
-socket.on('productsended',data =>{
-  let product = ''
-  data.forEach(element => {
-      product += `<li>
-      Nombre: ${element.title}
-      Descripcion: ${element.description}
-      Precio: ${element.price}
-      Status: ${element.status}
-      Codigo: ${element.code}
-      Stock: ${element.stock}
-      <li><br>`
-  });
-  productslist.innerHTML = product
+  
+  productslist.innerHTML = htmlproduct
 })

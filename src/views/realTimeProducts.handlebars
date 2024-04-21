@@ -3,16 +3,16 @@
 <h1>Product Manager</h1>
 
 
-<button id="add-product-btn">Agregar producto</button>
+
 
 <div id="add-product-form">
-    <form id="add-product-form-data" action="/realtimeproducts" method="post">
+    <form action="/realtimeproducts" id="add-product-form-data" method="post">
          <input type="text" id="product-code" placeholder="Codigo del producto" name="code">
         <input type="text" id="product-title" placeholder="Nombre del producto" name="title">
-        <input type="text" id="product-description" placeholder="Descripción del producto" name="Description">
+        <input type="text" id="product-description" placeholder="Descripción del producto" name="description">
         <input type="number" id="product-price" placeholder="Precio del producto" name="price">
         <input type="number" id="product-stock" placeholder="Stock del producto" name="stock">
-        <button type="submit">Guardar</button>
+        <button id="add-product-btn" type="submit">Agregar producto</button>
     </form>
 </div>
 
