@@ -1,6 +1,6 @@
 const socket = io()
 
- let products_arr = []
+
  function getNextId() {
   let ultimaposicion = 1;
   if(products_arr.length === 0){
@@ -12,18 +12,18 @@ const socket = io()
 
 let productslist = document.querySelector('#products-list')
 
-
 socket.on('srv:productsended',data =>{
-  document.querySelector('#products-list').value = 'Lista de Productos'
+  document.querySelector('#products-list').textContent = 'Lista de Productos'
   let htmlproduct = ''
-  console.log(`Mis datos son: ${data}`)
   data.forEach(product => {
-      htmlproduct += `<li> Nombre: ${product.title}
-      <br>Descripcion: ${product.description}
-      <br>Precio: ${product.price}
-      <br>Status: ${product.status}
-      <br>Codigo: ${product.code}
-      <br>Stock: ${product.stock} <li><br>`
+      product.forEach( key => {
+        htmlproduct += `<li> Nombre: ${key.title}
+        <br>Descripcion: ${key.description}
+        <br>Precio: ${key.price}
+        <br>Status: ${key.status}
+        <br>Codigo: ${key.code}
+        <br>Stock: ${key.stock} </li><br>`
+      })
   });
   
   productslist.innerHTML = htmlproduct
