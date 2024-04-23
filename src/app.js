@@ -9,7 +9,8 @@ const app = express()
 const PORT = process.env.PORT || 8080
 const httpServer = app.listen(PORT, error => {
     if(error) console.log(error)
-    console.log('Server escuchando en el puerto 8080')
+    console.log(`Server escuchando en el puerto ${PORT}`)
+
 })
 const io = new Server(httpServer)
 
